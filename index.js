@@ -15,15 +15,15 @@ app.post("/register", (req, res) => {
   res.sendStatus(201);
 });
 
-app.put("/user/angela", (req, res) => {
+app.put("/user/myname", (req, res) => {
   res.sendStatus(200);
 });
 
-app.patch("/user/angela", (req, res) => {
+app.patch("/user/myname", (req, res) => {
   res.sendStatus(200);
 });
 
-app.delete("/user/angela", (req, res) => {
+app.delete("/user/myname", (req, res) => {
   //Deleting
   res.sendStatus(200);
 });
