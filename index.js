@@ -9,10 +9,28 @@ app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
 
-app.post("/register", (req, res) => {
-  //Do something with the data
-  console.log(req.body);
-  res.sendStatus(201);
+var userIsConnect = false;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+function idCheck(req, res, next) {
+  const id = req.body["id"];
+  if (id === "ILoveProgramming") {
+    userIsAuthorised = true;
+  }
+  next();
+}
+app.use(idCheck);
+
+app.post("/check", (req, res) => {
+  if (userIsConnect) {
+    res.send("send massage");
+  } else {
+    res.redirect("/");
+    //Alternatively res.sendFile("/");
+    console.log(req.body);
+    res.sendStatus(201);
+  }
 });
 
 app.put("/user/myname", (req, res) => {
