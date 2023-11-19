@@ -18,9 +18,9 @@ const connectToDatabase = async () => {
   const userName = "ShmuelRoth"; // Make sure to wrap string values in quotes
   const password = "mh881999"; // Wrap in quotes
   const cluster = "@cluster0.gbn9blz.mongodb.net/?retryWrites=true&w=majority";
-  const dbName = "ToDo";
+  // const dbName = "ToDo";
 
-  const connectionURI = `mongodb+srv://${userName}:${password}${cluster}${dbName}`;
+  const connectionURI = `mongodb+srv://${userName}:${password}${cluster}`;
 
   try {
     if (!connect) {
@@ -38,11 +38,6 @@ const connectToDatabase = async () => {
   const db = mongoose.connection;
  
  
-  db.on("error", console.error.bind(console, "Connection error:"));
-  console.log("jkjk");
-  db.once("open", async () => {
-  console.log("Connected to MongoDB!");
-  
     // Example Schema and Model
     const todoSchema = new mongoose.Schema({
       content: {
@@ -61,16 +56,18 @@ const connectToDatabase = async () => {
     const newTodo = new Todo({
       content: "Do something",
     });
-
+    
     try {
-      await newTodo.save();
+      const saveToDo = await newTodo.save();
+      console.log(`${saveToDo._id} document inserted.`);
       console.log("Todo saved to the database");
+      return saveToDo
     } catch (error) {
       console.error(error);
     } finally {
       // Close the MongoDB connection after all operations
       mongoose.connection.close();
     }
-  });
-};
+  };
+
 start();
