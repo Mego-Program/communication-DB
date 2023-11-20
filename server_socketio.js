@@ -12,6 +12,11 @@ const server = http.createServer(app);
 // Create a Socket.io instance attached to the server
 const io = new Server(server);
 
+// Define a route for the root endpoint
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
+
 // Define a connection event for Socket.io
 io.on('connection', (socket) => {
   console.log('A client connected');
@@ -30,10 +35,6 @@ io.on('connection', (socket) => {
   });
 });
 
-// Define a route for the root endpoint
-app.get('/', (req, res) => {
-  res.send('Server is running');
-});
 
 // Set the server to listen on a specific port
 const port = process.env.PORT || 3000;
