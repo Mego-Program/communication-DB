@@ -19,7 +19,7 @@ async function run() {
 
     const newChat = new chat({ content: "dsts" });
     await newChat.save();
-    console.log(newChat);
+    console.log(newChat.date);
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   } finally {
