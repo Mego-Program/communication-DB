@@ -1,6 +1,7 @@
 import express from "express";
 import { Server } from "socket.io";
 import { createServer } from "node:http";
+
 import mongoose from "mongoose";
 import { chat } from "./Chat.js";
 import { dirname } from "path";
@@ -11,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
-const port = 3005;
+const port = 3006;
 
 const connectToDatabase = async () => {
   const userName = "ShmuelRoth";
@@ -42,7 +43,6 @@ io.on('connection', (socket) => {
       } finally {
         mongoose.connection.close();
       } 
-
   });
 });
 
