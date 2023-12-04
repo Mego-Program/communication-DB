@@ -19,7 +19,6 @@ const socketController = (socket) => {
     try {
       const uri = await connectDB();
       await mongoose.connect(uri);
-
       const newChat = new chat({ content: data });
       const result = await newChat.save();
       console.log("Saved new chat to MongoDB:", result);

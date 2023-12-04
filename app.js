@@ -26,6 +26,23 @@ const io = new Server(server, {
 
 app.get("/", chatControler);
 
+const usersId = {
+  chatID: 2,
+  users: {
+    user1: "userID",
+    messege: [{ conntect: "test", time: "13:00" }],
+    user2: "userID",
+    messege: [{ conntect: "test", time: "13:00" }],
+  },
+};
+app.get("/chat/:chatid", (req, res) => {
+  const { chatid } = req.params;
+  console.log(chatid);
+  res
+    .status(200)
+    .json({chat: usersId});
+});
+
 // Listens for new connections to the server.
 io.on("connection", socketController);
 
