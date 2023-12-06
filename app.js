@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import chatControler from "./controllers/chatController.js";
 import socketController from "./controllers/socketController.js";
 import connectDB from "./servises/connectDB.js";
+import chatMessagesController from "./controllers/chatMessagesController.js";
 
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
@@ -26,22 +27,7 @@ const io = new Server(server, {
 
 app.get("/", chatControler);
 
-const usersId = {
-  chatID: 2,
-  users: {
-    user1: "userID",
-    messege: [{ conntect: "test", time: "13:00" }],
-    user2: "userID",
-    messege: [{ conntect: "test", time: "13:00" }],
-  },
-};
-app.get("/chat/:chatid", (req, res) => {
-  const { chatid } = req.params;
-  console.log(chatid);
-  res
-    .status(200)
-    .json({chat: usersId});
-});
+app.get("/chat/:chatid", chatMessagesController);
 
 // Listens for new connections to the server.
 io.on("connection", socketController);
