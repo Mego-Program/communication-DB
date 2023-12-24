@@ -1,4 +1,4 @@
-import { io } from "../app.js";
+import { io } from "../index.js";
 import { chat } from "../models/chatSchema.js";
 import mongoose from "mongoose";
 import connectDB from "../servises/connectDB.js";
