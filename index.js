@@ -12,9 +12,11 @@ import chatMessagesController from "./controllers/chatMessages.js";
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
 
-// app.get('/', (req, res) => {
-//   res.send('Hello communication-Bnei-Brak Team! This is our Express server.');
-// });
+
+app.get('/', (req, res) => {
+    res.send('Hello communication-Bnei-Brak Team! This is our Express server.');
+});
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -24,11 +26,11 @@ connectDB();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://communication-bb.vercel.app',
+    origin: 'http://localhost:5173',
   },
 });
 
-app.get("/", chatControler);
+// app.get("/", chatControler);
 
 app.get("/chat/:chatid", chatMessagesController);
 
