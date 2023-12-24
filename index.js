@@ -13,6 +13,10 @@ import chatMessagesController from "./controllers/chatMessagesController.js";
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
 
+app.get('/', (req, res) => {
+    res.send('Hello communication-Bnei-Brak Team! This is our Express server.');
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
