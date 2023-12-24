@@ -36,5 +36,5 @@ app.get("/chat/:chatid", chatMessagesController);
 // Listens for new connections to the server.
 io.on("connection", socketController);
 
-export default server;
+export default app;
 export { io };
