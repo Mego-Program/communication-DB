@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 import chatControler from "./controllers/chatController.js";
 import socketController from "./controllers/socketController.js";
 import connectDB from "./servises/connectDB.js";
-import chatMessagesController from "./controllers/chatMessagesController.js";
+import chatMessagesController from "./controllers/chatMessages.js";
 
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
