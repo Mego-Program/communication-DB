@@ -30,7 +30,7 @@ app.get("/", chatControler);
 app.get("/chat/:chatid", chatMessagesController);
 
 // Listens for new connections to the server.
-io.on("connection", socketController);
+io.on("connection", (socket) => socketController(socket));
 
 export default server;
 export { io };

@@ -1,4 +1,4 @@
-import { io } from "../index.js";
+import { io } from "../app.js";
 import { chat } from "../models/chatSchema.js";
 import mongoose from "mongoose";
 import connectDB from "../servises/connectDB.js";
@@ -8,17 +8,14 @@ const updateUserId = () => {
   userId++;
   return userId;
 };
-
 const socketController = (socket) => {
   console.log(`User ID - ${socket.id} is connected.`);
+  io.emit("message", `Welcom to the chat your id is: ${userId}`); // send a welcome message to all connected clients
+  updateUserId(); // Calls a function to update the user's ID
 
   // Sets up a listener for 'message' events on this socket
   socket.on("message", async (data) => {
     console.log(data);
-
-    // Call updateUserId when a message is received
-    updateUserId();
-
     try {
       const uri = await connectDB();
       await mongoose.connect(uri);
@@ -30,8 +27,7 @@ const socketController = (socket) => {
     } finally {
       mongoose.connection.close();
     }
-
-    io.emit("message", ` ${data}`);
+    socket.broadcast.emit("message", `${data}`); // Emits the received message to all connected clients except the one who sent it.
   });
 
   // Sets up a listener for the 'disconnect' event for this socket
