@@ -29,7 +29,7 @@ const io = new Server(server, {
   },
 });
 
-app.get("/", chatControler);
+// app.get("/", chatControler);
 
 app.get("/chat/:chatid", chatMessagesController);
 
