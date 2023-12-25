@@ -1,4 +1,3 @@
-import { chat } from "../models/chatSchema.js";
 const usersId = {
   2: {
     users: {
@@ -27,9 +26,9 @@ const usersId = {
 };
 
 const chatMesssagesControler = (req, res) => {
-    const { chatid } = req.params;
-    const chatData = usersId[chatid];
-    if (chatData) {
+  const { chatid } = req.params;
+  const chatData = usersId[chatid];
+  if (chatData) {
     res.status(200).json(chatData);
   } else {
     res.status(404).send("Chat not found");
