@@ -16,17 +16,7 @@ const socketController = (socket) => {
   // Sets up a listener for 'message' events on this socket
   socket.on("message", async (data) => {
     console.log(data);
-    try {
-      const uri = await connectDB();
-      await mongoose.connect(uri);
-      const newChat = new chat({ content: data });
-      const result = await newChat.save();
-      console.log("Saved new chat to MongoDB:", result);
-    } catch (error) {
-      console.error("Error connecting to MongoDB:", error);
-    } finally {
-      mongoose.connection.close();
-    }
+   
     socket.broadcast.emit("message", `${data}`); // Emits the received message to all connected clients except the one who sent it.
   });
 
