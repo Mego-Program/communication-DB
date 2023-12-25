@@ -25,9 +25,10 @@ const io = new Server(server, {
   },
 });
 
-app.get("/", chatControler);
+app.get("/", chatControler); // this need beak up the all chat to pages when the chat is connect
 
-app.get("/chat/:chatid", chatMessagesController);
+// this save the chat message to the DB when the user send message
+app.post("/send/:senderId/:gettingId", chatMessagesController);
 
 // Listens for new connections to the server.
 io.on("connection", socketController);
