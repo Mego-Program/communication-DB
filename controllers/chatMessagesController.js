@@ -26,14 +26,13 @@ const usersId = {
   },
 };
 
-const chatMesssagesControler = async (req, res) => {
+const chatMesssagesControler = (req, res) => {
     const { chatid } = req.params;
     const chatData = usersId[chatid];
-    try {
-    const checks = await chat.find();
-    res.status(200).json(checks);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
+    if (chatData) {
+    res.status(200).json(chatData);
+  } else {
+    res.status(404).send("Chat not found");
   }
 };
 export default chatMesssagesControler;
