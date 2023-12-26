@@ -23,8 +23,3 @@ async function getChatHistory(user1, user2) {
   }).sort({ timestamp: 1 }); 
   return chatHistory;
 }
-
-sendMessage('user1', 'user2', 'hello!');
-
-const chatHistory = getChatHistory('user1', 'user2');
-console.log(chatHistory);
