@@ -1,15 +1,16 @@
-import { Chat } from "../models/chatSchema.js";
-import connectDB from "../services/connectDB.js";
+import { chat } from "../models/chatSchema.js";
+import connectDB from "../servises/connectDB.js";
+import mongoose from "mongoose";
 
 const saveChatToDatabase = async (sender, recipient, content) => {
   try {
     const uri = await connectDB();
     await mongoose.connect(uri);
 
-    const newChat = new Chat({
+    const newChat = new chat({
       sender: sender,
-      recipient: recipient,
-      content: content
+      getting: recipient,
+      content: content,
     });
 
     const result = await newChat.save();
@@ -22,4 +23,3 @@ const saveChatToDatabase = async (sender, recipient, content) => {
 };
 
 export default saveChatToDatabase;
-
