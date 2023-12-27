@@ -1,5 +1,5 @@
 import { chat } from "../models/chatSchema.js";
-import connectDB from "../servises/connectDB.js";
+import connectDB from "./connectDB.js";
 import mongoose from "mongoose";
 
 const saveChatToDatabase = async (sender, recipient, content) => {
