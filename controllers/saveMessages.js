@@ -2,9 +2,7 @@ import saveChatToDatabase from "../servises/savingMessage.js";
 import socketController from "./socketController.js";  
 
 const saveMessage = async (req, res) => {
-  const { senderId, gettingId } = req.params;
   const {text, local_user, selectedUserId}  = req.body;
-  console.log("∆", local_user, selectedUserId["*"])
   try {
     await saveChatToDatabase(local_user, selectedUserId["*"], text);
     // Listens for new connections to the server.
