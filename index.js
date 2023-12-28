@@ -39,5 +39,10 @@ app.post("/send/:senderId/:gettingId", chatMessagesController);
 // Listens for new connections to the server.
 io.on("connection", socketController);
 
-export default server;
+server.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
+});
+
 export { io };
+export default server;
+
