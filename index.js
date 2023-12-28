@@ -31,5 +31,10 @@ app.get("/chat/:senderId/:gettingId", chatHistoryMesssages);
 // this save the chat message to the DB when the user send message
 app.post("/send/:senderId/:gettingId", saveMessage);
 
-export default server;
+server.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
+});
+
 export { io };
+export default server;
+
