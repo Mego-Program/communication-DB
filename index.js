@@ -29,7 +29,7 @@ const io = new Server(server, {
 app.get("/chat/:senderId/:gettingId", chatHistoryMesssages);
 
 // this save the chat message to the DB when the user send message
-app.post("/send/:senderId/:gettingId", saveMessage);
+app.post("/send", saveMessage);
 
 export default server;
 export { io };
