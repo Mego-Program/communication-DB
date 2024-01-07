@@ -1,21 +1,15 @@
-import { io } from "../index.js";
-import { chat } from "../models/chatSchema.js";
-import mongoose from "mongoose";
-import connectDB from "../servises/connectDB.js";
-
 const socketController = (socket) => {
-  console.log(`User ID - ${socket.id} is connected.`);
-  io.emit("message", "Welcom to the chat"); // send a welcome message to all connected clients
-
-  // Sets up a listener for 'message' events on this socket
-  socket.on("message", async (data) => {
-    console.log(data);
-    socket.broadcast.emit("message", `${data}`); // Emits the received message to all connected clients except the one who sent it.
+  console.log(`user connected: ${socket.id}`);
+  let roomId = ""
+  socket.on("join", (smg) => {
+    roomId = smg
+    console.log(`ID Room ${roomId}`);
+    socket.join(roomId);
   });
 
-  // Sets up a listener for the 'disconnect' event for this socket
-  socket.on("disconnect", () => {
-    console.log(`User ID - ${socket.id} is disconnected.`);
+  socket.on("message", (smg) => {
+    console.log(smg.room === roomId);
+    socket.to(smg.room).emit("send", smg.newMessage)
   });
 };
 

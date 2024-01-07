@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import saveMessage from "./controllers/saveMessages.js";
 import chatHistoryMesssages from "./controllers/chatHistoryMessages.js";
 import chatConnect from "./controllers/chatConnect.js";
+import socketController from "./controllers/socketController.js";
 
 dotenv.config(); // Load(לטעון) info from .env file
 const app = exspress();
@@ -26,10 +27,11 @@ const io = new Server(server, {
 });
 
 // this beak up the all chat by id sender and getting to the pages when the chat is connect
-app.get("/chat/:senderId/:gettingId", chatHistoryMesssages);
+app.get("/chat", chatHistoryMesssages);
 
 // this save the chat message to the DB when the user send message
 app.post("/send", saveMessage);
 
+io.on("connection", socketController);
+
 export default server;
-export { io };

@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 const getChatHistory = async (user1, user2) => {
   const uri = await connectDB();
   await mongoose.connect(uri);
+  console.log("get db history start");
   const chatHistory = await chat
     .find({
       $or: [
