@@ -1,11 +1,19 @@
 import mongoose from "mongoose";
 
 const chatSchema = new mongoose.Schema({
-  sender: {
+  senderId: {
     type: String,
     required: true
   },
-  getting: {
+  gettingId: {
+    type: String,
+    required: true
+  },
+  senderFirstName: {
+    type: String,
+    required: true
+  },
+  senderLastName: {
     type: String,
     required: true
   },

@@ -1,9 +1,9 @@
 import saveChatToDatabase from "../servises/savingMessage.js";
 
 const saveMessage = async (req, res) => {
-  const {text, local_user, selectedUserId}  = req.body;
+  const {text, firstName, lastName, userId, selectedUserId}  = req.body;
   try {
-    await saveChatToDatabase(local_user, selectedUserId["*"], text);
+    await saveChatToDatabase(userId, selectedUserId["*"], firstName, lastName, text);
     // Listens for new connections to the server.
     res.status(200).send("Message saved to DB");
   } catch (error) {
